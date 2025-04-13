@@ -1,0 +1,3 @@
+D:/study/大一下/c++/Lab/Lab1/build/CMakeFiles/Tetris.dir
+D:/study/大一下/c++/Lab/Lab1/build/CMakeFiles/edit_cache.dir
+D:/study/大一下/c++/Lab/Lab1/build/CMakeFiles/rebuild_cache.dir

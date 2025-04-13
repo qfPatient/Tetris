@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.10)
+project(Tetris)
+
+# 添加可执行文件
+add_executable(Tetris Main.cpp Classes.cpp Performance.cpp)
+
+# 包含目录配置
+target_include_directories(Tetris PRIVATE D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2)  
+
+# 链接库配置（关键修复点）
+target_link_directories(Tetris PRIVATE D:/code/SDL2-2.32.4/x86_64-w64-mingw32/lib)
+
+# 必须链接的库（Windows环境）
+target_link_libraries(Tetris PRIVATE
+    mingw32     # MinGW开发必须
+    SDL2main    # SDL主入口
+    SDL2        # SDL核心库
+    SDL2_ttf
+)
