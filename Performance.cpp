@@ -1,6 +1,11 @@
 #include "Performance.h"
 #include "Classes.h"
+#include <fstream>
+#include <iostream>
 #include <SDL_ttf.h>
+#include <string>
+#include <chrono>
+#include <ctime>
 
 #undef main
 
@@ -12,6 +17,7 @@ SDL_Texture *textTexture = nullptr;
 std::vector<std::unique_ptr<Tetromino>> SHAPE; // 图形储存
 static int scores = 0; // 得分统计
 int grid[20][10] = {0}; // 游戏区域的网格（20行 x 10列）
+int difficulty = 1; // 难度选择
 
 void Init()
 {
@@ -49,6 +55,7 @@ void Init()
         SDL_Log("TTF_OpenFont failed: %s", TTF_GetError());
         return;
     }
+    resetGraphInformation();
 }
 
 // 新图形的创建
@@ -110,6 +117,15 @@ void event_loop()
                 is_pressed = true;
                 switch (event.key.keysym.sym) // 按键检测
                 {
+                case SDLK_KP_1: // 三种难度选择
+                    difficulty = 1;
+                    break;
+                case SDLK_KP_2 : 
+                    difficulty = 2;
+                    break;
+                case SDLK_KP_3:
+                    difficulty = 3;
+                    break;
                 case SDLK_ESCAPE: // 退出
                     gameover = true;
                     break;
@@ -177,7 +193,7 @@ void event_loop()
         }
 
         if(!is_stop){
-            Uint32 fallInterval = baseFallInterval;
+            Uint32 fallInterval = baseFallInterval / difficulty;
             Uint32 currentTime = SDL_GetTicks();
 
             if (currentTime - lastFallTime >= fallInterval || is_pressed_down)
@@ -205,6 +221,7 @@ void event_loop()
                                     cell.shape_array = {{1}};
                                     // 储存原图形
                                     SHAPE.push_back(std::make_unique<Tetromino>(cell));
+                                    graphInformation();
                                 }
                             }
                         }
@@ -285,6 +302,7 @@ void event_loop()
 
 void destory()
 {
+    recordInformation();
     SHAPE.clear();
     SDL_DestroyRenderer(rdr);
     SDL_DestroyWindow(win);
@@ -453,3 +471,101 @@ void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vec
     SHAPE = std::move(newShapes);
 }
 
+void resetGraphInformation()
+{
+    std::ofstream ofs;
+    ofs.open("option.txt", std::ios::out);
+    if (!ofs.is_open())
+    {
+        std::cout << "option.txt打开失败." << std::endl;
+        return;
+    }
+    ofs.close();
+}
+
+void graphInformation()
+{
+    int time[3] = {500, 250, 167};
+    int n = SHAPE.size();
+    std::ofstream ofs;
+    ofs.open("option.txt", std::ios::out|std::ios::app);
+    if(!ofs.is_open())
+    {
+        std::cout << "option.txt打开失败." << std::endl;
+        return;
+    }
+    int full = 0;
+    if(n>0 && n<10)
+    {
+        full = 2;
+    }
+    else if(n>=10 && n<100)
+    {
+        full = 1;
+    }
+    ofs << "编号: ";
+    for (int i = 0; i < full;i++)
+    {
+        ofs << " ";
+    }
+    ofs << n << " ";
+    ofs << "颜色: " << SHAPE[n - 1]->color << " ";
+    ofs << "是否填充: " << "是" << " ";
+    ofs << "下落间隔: " << time[difficulty - 1] << " ms" << std::endl;
+
+    ofs.close();
+}
+
+void recordInformation()
+{
+    std::ifstream ifs;
+    ifs.open("record.txt", std::ios::in);
+    if (!ifs.is_open())
+    {
+        std::cout << "record.txt文件打开失败." << std::endl;
+        return;
+    }
+
+    std::string str;
+    while (getline(ifs, str))
+    {
+        // 读取到第二行包含分数来进行比较
+    }
+
+    int old_scores = 0;
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (str[i] >= '0' && str[i] <= '9')
+        {
+            old_scores = old_scores * 10 + (str[i] - '0');
+        }
+    }
+    ifs.close();
+
+    std::ofstream ofs;
+    ofs.open("record.txt", std::ios::out);
+    if(!ofs.is_open())
+    {
+        std::cout << "record.txt文件打开失败." << std::endl;
+        return;
+    }
+
+    auto now = std::chrono::system_clock::now();                   // 获取当前时间点
+    std::time_t now_c = std::chrono::system_clock::to_time_t(now); // 转换为 time_t 类型
+    std::string time = std::ctime(&now_c);
+    time.pop_back();
+
+    if(scores>=old_scores)
+    {
+        // 输出格式化的时间字符串
+        ofs << "最高分记录时间: " << time << std::endl;
+        ofs << "最高分: " << scores;
+    }
+    else
+    {
+        // 输出格式化的时间字符串
+        ofs << "最高分记录时间: " << time << std::endl;
+        ofs << "最高分: " << old_scores;
+    }
+    ofs.close();
+}

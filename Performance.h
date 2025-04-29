@@ -17,6 +17,7 @@ extern void edge_judge(Tetromino *currentPiece,bool is_pressed_down);
 extern bool checkCollision(Tetromino *currentPiece);
 extern Tetromino *createTetrominoCopy(const Tetromino *original, int newX, int newY, const vector<vector<int>> &newShape);
 extern void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vector<int> &fullRows);
+extern void graphInformation();
 
 void Init();
 void draw();
@@ -29,3 +30,6 @@ vector<int>findFullRows(void);
 void updateGrid(const vector<int> &fullRows);
 Tetromino *createTetrominoCopy(const Tetromino *original, int newX, int newY, const vector<vector<int>> &newShape);
 void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vector<int> &fullRows);
+void resetGraphInformation();
+void graphInformation();
+void recordInformation();
