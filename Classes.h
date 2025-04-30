@@ -8,6 +8,15 @@
 using std::vector;
 extern int dx, dy;
 
+// 用来储存option.txt里的信息
+typedef struct
+{
+    int ID;
+    SDL_Color color;
+    bool is_filled;
+    int v;
+} getInformation;
+
 class Tetromino
 {
 public:
@@ -37,6 +46,8 @@ protected:
     friend bool checkCollision(Tetromino *currentPiece);
     friend Tetromino *createTetrominoCopy(const Tetromino *original, int newX, int newY, const vector<vector<int>> &newShape);
     friend void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vector<int> &fullRows);
+    friend void graphInformation();
+    friend getInformation optionInformation();
 };
 
 // 类的继承和子类构造函数实现
@@ -55,7 +66,7 @@ public:
 
 class Tetromino_J : public Tetromino
 {
-private:
+private://
     static int NumsOfJ;
 
 public:

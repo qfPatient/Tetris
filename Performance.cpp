@@ -9,6 +9,8 @@
 
 #undef main
 
+extern getInformation old;
+
 SDL_Window *win = nullptr; // 窗口初始化 
 SDL_Renderer *rdr = nullptr; // 渲染器初始化
 TTF_Font *font = nullptr;    // 字体初始化
@@ -18,6 +20,7 @@ std::vector<std::unique_ptr<Tetromino>> SHAPE; // 图形储存
 static int scores = 0; // 得分统计
 int grid[20][10] = {0}; // 游戏区域的网格（20行 x 10列）
 int difficulty = 1; // 难度选择
+getInformation old;
 
 void Init()
 {
@@ -49,13 +52,15 @@ void Init()
         SDL_Log("TTF_Init failed: %s", TTF_GetError());
         return;
     }
-    font = TTF_OpenFont("C:\\Windows\\Fonts\\simfang.ttf", 20);
+    font = TTF_OpenFont("C:\\Windows\\Fonts\\JetBrainsMono-Regular.ttf", 15);
     if (nullptr == font)
     {
         SDL_Log("TTF_OpenFont failed: %s", TTF_GetError());
         return;
     }
-    resetGraphInformation();
+
+    // 初始化时直接得到option.txt里的信息,便于后续修改游戏
+    old = optionInformation();
 }
 
 // 新图形的创建
@@ -98,7 +103,11 @@ void event_loop()
     // 检测游戏是否结束
     bool gameover = false;
     Uint32 lastFallTime = SDL_GetTicks();
-    const Uint32 baseFallInterval = 500; 
+    Uint32 baseFallInterval = 500;
+    if(old.v!=0)
+    {
+        baseFallInterval = old.v; // 根据文件来修改下落速度
+    }
     bool is_stop = 0; // 是否暂停
 
     while (!gameover)
@@ -193,7 +202,7 @@ void event_loop()
         }
 
         if(!is_stop){
-            Uint32 fallInterval = baseFallInterval / difficulty;
+            Uint32 fallInterval = baseFallInterval / difficulty; // 难度选择
             Uint32 currentTime = SDL_GetTicks();
 
             if (currentTime - lastFallTime >= fallInterval || is_pressed_down)
@@ -221,7 +230,6 @@ void event_loop()
                                     cell.shape_array = {{1}};
                                     // 储存原图形
                                     SHAPE.push_back(std::make_unique<Tetromino>(cell));
-                                    graphInformation();
                                 }
                             }
                         }
@@ -276,21 +284,8 @@ void event_loop()
             // 绘画出当前图像
             currentPiece->draw(rdr);
 
-            char scoreText[50];
-            snprintf(scoreText, sizeof(scoreText), "Scores: %d", scores);
-
-            SDL_Color textColor = {255, 255, 255, 255}; // 白色文字
-            textSurface = TTF_RenderText_Blended(font, scoreText, textColor);
-            if (textSurface)
-            {
-                textTexture = SDL_CreateTextureFromSurface(rdr, textSurface);
-                if (textTexture)
-                {
-                    SDL_Rect textRect = {10, 10, textSurface->w, textSurface->h}; // 左上角位置
-                    SDL_RenderCopy(rdr, textTexture, NULL, &textRect);
-                    SDL_DestroyTexture(textTexture);
-                }
-            }
+            presentOldHighestScores(); // 屏幕打印历史最高分
+            presentCurrentScores();    // 屏幕打印当前得分
 
             // 渲染呈现
             SDL_RenderPresent(rdr);
@@ -302,7 +297,7 @@ void event_loop()
 
 void destory()
 {
-    recordInformation();
+    recordInformation(); // 在游戏结束时收集必要信息
     SHAPE.clear();
     SDL_DestroyRenderer(rdr);
     SDL_DestroyWindow(win);
@@ -392,6 +387,7 @@ vector<int>findFullRows(void)
         {
             fullRows.push_back(i);
         }
+        // 分数统计
         scores += fullRows.size()*10;
     }
     return fullRows;
@@ -471,51 +467,87 @@ void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vec
     SHAPE = std::move(newShapes);
 }
 
-void resetGraphInformation()
+// 从option.txt读取信息并储存
+getInformation optionInformation()
 {
-    std::ofstream ofs;
-    ofs.open("option.txt", std::ios::out);
-    if (!ofs.is_open())
+    std::ifstream ifs;
+    ifs.open("option.txt", std::ios::in);
+    ifs.seekg(0);
+    std::vector<std::string> str(3); // 三行
+    getInformation old; // 创建对象，以便返回
+    old.ID = 0; 
+    int i = 0;
+    while(getline(ifs,str[i]))
     {
-        std::cout << "option.txt打开失败." << std::endl;
-        return;
+        i++;
     }
-    ofs.close();
+    std::string ID; // 编号
+    for (int i = 0; i < str[0].size();i++)
+    {
+        if(str[0][i]>='0'&&str[0][i]<='9')
+        {
+            ID.push_back(str[0][i]);
+        }
+    }
+    for (int i = 0; i < ID.size();i++)
+    {
+        old.ID = old.ID * 10 + (ID[i] - '0');
+    }
+
+    std::string color[5]; // 颜色以及是否填充
+    int num = 0;
+    bool reading = false;
+    for (int i = 0; i < str[1].size(); i++)
+    {
+        char ch = str[1][i];
+        if (ch >= '0' && ch <= '9')
+        {
+            // 开始读取数字
+            color[num] += ch;
+            reading = true;
+        }
+        else
+        {
+            // 当前是非数字字符，说明数字读取结束
+            if (reading)
+            {
+                ++num;
+                reading = false;
+            }
+        }
+    }
+    int temp[5] = {0};
+    for (int i = 0; i < 5;i++)
+    {
+        for (int j = 0; j < color[i].size();j++)
+        {
+            temp[i] = temp[i] * 10 + (color[i][j] - '0');
+        }
+    }
+    old.color.a = temp[0];
+    old.color.b = temp[1];
+    old.color.g = temp[2];
+    old.color.r = temp[3];
+    old.is_filled = temp[4];
+
+    std::string v; // 速度
+    old.v = 0;
+    for (int i = 0; i < str[2].size(); i++)
+    {
+        if (str[2][i] >= '0' && str[2][i] <= '9')
+        {
+            v.push_back(str[2][i]);
+        }
+    }
+    for (int i = 0; i < v.size(); i++)
+    {
+        old.v = old.v * 10 + (v[i] - '0');
+    }
+
+    return old; // 返回getInformation对象
 }
 
-void graphInformation()
-{
-    int time[3] = {500, 250, 167};
-    int n = SHAPE.size();
-    std::ofstream ofs;
-    ofs.open("option.txt", std::ios::out|std::ios::app);
-    if(!ofs.is_open())
-    {
-        std::cout << "option.txt打开失败." << std::endl;
-        return;
-    }
-    int full = 0;
-    if(n>0 && n<10)
-    {
-        full = 2;
-    }
-    else if(n>=10 && n<100)
-    {
-        full = 1;
-    }
-    ofs << "编号: ";
-    for (int i = 0; i < full;i++)
-    {
-        ofs << " ";
-    }
-    ofs << n << " ";
-    ofs << "颜色: " << SHAPE[n - 1]->color << " ";
-    ofs << "是否填充: " << "是" << " ";
-    ofs << "下落间隔: " << time[difficulty - 1] << " ms" << std::endl;
-
-    ofs.close();
-}
-
+// 时间以及最高分记录
 void recordInformation()
 {
     std::ifstream ifs;
@@ -532,7 +564,7 @@ void recordInformation()
         // 读取到第二行包含分数来进行比较
     }
 
-    int old_scores = 0;
+    int old_scores = 0; // 之前的最高分
     for (int i = 0; i < str.size(); i++)
     {
         if (str[i] >= '0' && str[i] <= '9')
@@ -555,7 +587,7 @@ void recordInformation()
     std::string time = std::ctime(&now_c);
     time.pop_back();
 
-    if(scores>=old_scores)
+    if(scores>=old_scores) // 现在的得分与之前的最高分比较
     {
         // 输出格式化的时间字符串
         ofs << "最高分记录时间: " << time << std::endl;
@@ -568,4 +600,74 @@ void recordInformation()
         ofs << "最高分: " << old_scores;
     }
     ofs.close();
+}
+
+// 屏幕打印最高分
+void presentOldHighestScores()
+{
+    std::ifstream ifs;
+    ifs.open("record.txt", std::ios::in);
+    if (!ifs.is_open())
+    {
+        std::cout << "record.txt文件打开失败." << std::endl;
+        return;
+    }
+
+    std::string str;
+    while (getline(ifs, str))
+    {
+        // 读取到第二行包含分数来进行比较
+    }
+
+    int old_scores = 0;
+    char highest[100];
+    int nonum = 0;
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (str[i] >= '0' && str[i] <= '9')
+        {
+            highest[i - nonum] = str[i];
+            old_scores = old_scores * 10 + (str[i] - '0');
+        }
+        else
+        {
+            nonum++;
+        }
+    }
+    ifs.close();
+
+    snprintf(highest, sizeof(highest), "Highest Scores: %d", old_scores);
+
+    SDL_Color textColor = {255, 255, 255, 255}; // 白色文字
+    textSurface = TTF_RenderText_Blended(font, highest, textColor);
+    if (textSurface)
+    {
+        textTexture = SDL_CreateTextureFromSurface(rdr, textSurface);
+        if (textTexture)
+        {
+            SDL_Rect textRect = {10, 10, textSurface->w, textSurface->h}; // 左上角位置
+            SDL_RenderCopy(rdr, textTexture, NULL, &textRect);
+            SDL_DestroyTexture(textTexture);
+        }
+    }
+}
+
+// 屏幕打印当前得分
+void presentCurrentScores()
+{
+    char scoreText[50];
+    snprintf(scoreText, sizeof(scoreText), "Current Scores: %d", scores);
+
+    SDL_Color textColor = {255, 255, 255, 255}; // 白色文字
+    textSurface = TTF_RenderText_Blended(font, scoreText, textColor);
+    if (textSurface)
+    {
+        textTexture = SDL_CreateTextureFromSurface(rdr, textSurface);
+        if (textTexture)
+        {
+            SDL_Rect textRect = {10, 30, textSurface->w, textSurface->h}; // 左上角位置
+            SDL_RenderCopy(rdr, textTexture, NULL, &textRect);
+            SDL_DestroyTexture(textTexture);
+        }
+    }
 }

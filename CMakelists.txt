@@ -5,10 +5,10 @@ project(Tetris)
 add_executable(Tetris Main.cpp Classes.cpp Performance.cpp)
 
 # 包含目录配置
-target_include_directories(Tetris PRIVATE D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2)  
+target_include_directories(Tetris PRIVATE D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2)  
 
 # 链接库配置（关键修复点）
-target_link_directories(Tetris PRIVATE D:/code/SDL2-2.32.4/x86_64-w64-mingw32/lib)
+target_link_directories(Tetris PRIVATE D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/lib)
 
 # 必须链接的库（Windows环境）
 target_link_libraries(Tetris PRIVATE
