@@ -9,7 +9,7 @@
 
 #undef main
 
-extern getInformation old;
+extern vector<getInformation> old;
 
 SDL_Window *win = nullptr; // 窗口初始化 
 SDL_Renderer *rdr = nullptr; // 渲染器初始化
@@ -20,7 +20,7 @@ std::vector<std::unique_ptr<Tetromino>> SHAPE; // 图形储存
 static int scores = 0; // 得分统计
 int grid[20][10] = {0}; // 游戏区域的网格（20行 x 10列）
 int difficulty = 1; // 难度选择
-getInformation old;
+vector<getInformation> old;
 
 void Init()
 {
@@ -104,14 +104,17 @@ void event_loop()
     bool gameover = false;
     Uint32 lastFallTime = SDL_GetTicks();
     Uint32 baseFallInterval = 500;
-    if(old.v!=0)
-    {
-        baseFallInterval = old.v; // 根据文件来修改下落速度
-    }
     bool is_stop = 0; // 是否暂停
 
     while (!gameover)
     {
+        if (old.size() != 1)
+        {
+            if (old[currentPiece->type].v != 0)
+            {
+                baseFallInterval = old[currentPiece->type].v; // 根据文件来修改下落速度
+            }
+        }
         bool is_pressed = false; // 是否按下键盘
         bool is_pressed_down = false; // 是否按下了方向下键
         bool is_quit = false; // esc键退出
@@ -468,81 +471,91 @@ void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vec
 }
 
 // 从option.txt读取信息并储存
-getInformation optionInformation()
+vector<getInformation> optionInformation()
 {
     std::ifstream ifs;
     ifs.open("option.txt", std::ios::in);
-    ifs.seekg(0);
-    std::vector<std::string> str(3); // 三行
-    getInformation old; // 创建对象，以便返回
-    old.ID = 0; 
-    int i = 0;
-    while(getline(ifs,str[i]))
+    if(!ifs.is_open())
     {
-        i++;
+        std::cout << "Failed to open option.txt." << std::endl;
+        return vector<getInformation>(1);
     }
-    std::string ID; // 编号
-    for (int i = 0; i < str[0].size();i++)
+    vector<getInformation> old(7); // 创建对象，以便返回
+    for (int j = 0; j < 7;j++)
     {
-        if(str[0][i]>='0'&&str[0][i]<='9')
+        std::cout << 486 << " " << j << std::endl;
+        old[j].ID = 0;
+        int temp1 = 0;
+        vector<std::string> str(3); // 三行
+        while(temp1<3)
         {
-            ID.push_back(str[0][i]);
+            getline(ifs, str[temp1++]);
         }
-    }
-    for (int i = 0; i < ID.size();i++)
-    {
-        old.ID = old.ID * 10 + (ID[i] - '0');
-    }
-
-    std::string color[5]; // 颜色以及是否填充
-    int num = 0;
-    bool reading = false;
-    for (int i = 0; i < str[1].size(); i++)
-    {
-        char ch = str[1][i];
-        if (ch >= '0' && ch <= '9')
+        std::string ID; // 编号
+        for (int i = 0; i < str[0].size(); i++)
         {
-            // 开始读取数字
-            color[num] += ch;
-            reading = true;
-        }
-        else
-        {
-            // 当前是非数字字符，说明数字读取结束
-            if (reading)
+            if (str[0][i] >= '0' && str[0][i] <= '9')
             {
-                ++num;
-                reading = false;
+                ID.push_back(str[0][i]);
             }
         }
-    }
-    int temp[5] = {0};
-    for (int i = 0; i < 5;i++)
-    {
-        for (int j = 0; j < color[i].size();j++)
+        for (int i = 0; i < ID.size(); i++)
         {
-            temp[i] = temp[i] * 10 + (color[i][j] - '0');
+            old[j].ID = old[j].ID * 10 + (ID[i] - '0');
         }
-    }
-    old.color.a = temp[0];
-    old.color.b = temp[1];
-    old.color.g = temp[2];
-    old.color.r = temp[3];
-    old.is_filled = temp[4];
+        std::cout << 509 << j << std::endl;
+        std::string color[5]; // 颜色以及是否填充
+        int num = 0;
+        bool reading = false;
+        for (int i = 0; i < str[1].size(); i++)
+        {
+            char ch = str[1][i];
+            if (ch >= '0' && ch <= '9')
+            {
+                // 开始读取数字
+                color[num] += ch;
+                reading = true;
+            }
+            else
+            {
+                // 当前是非数字字符，说明数字读取结束
+                if (reading)
+                {
+                    ++num;
+                    reading = false;
+                }
+            }
+        }
+        int temp[5] = {0};
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < color[i].size(); j++)
+            {
+                temp[i] = temp[i] * 10 + (color[i][j] - '0');
+            }
+        }
+        old[j].color.a = temp[0];
+        old[j].color.b = temp[1];
+        old[j].color.g = temp[2];
+        old[j].color.r = temp[3];
+        old[j].is_filled = temp[4];
+        std::cout << 545 << j << std::endl;
 
-    std::string v; // 速度
-    old.v = 0;
-    for (int i = 0; i < str[2].size(); i++)
-    {
-        if (str[2][i] >= '0' && str[2][i] <= '9')
+        std::string v; // 速度
+        old[j].v = 0;
+        for (int i = 0; i < str[2].size(); i++)
         {
-            v.push_back(str[2][i]);
+            if (str[2][i] >= '0' && str[2][i] <= '9')
+            {
+                v.push_back(str[2][i]);
+            }
+        }
+        for (int i = 0; i < v.size(); i++)
+        {
+            old[j].v = old[j].v * 10 + (v[i] - '0');
         }
     }
-    for (int i = 0; i < v.size(); i++)
-    {
-        old.v = old.v * 10 + (v[i] - '0');
-    }
+    ifs.close();
 
     return old; // 返回getInformation对象
 }
