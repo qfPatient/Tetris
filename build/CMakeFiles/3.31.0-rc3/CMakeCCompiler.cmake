@@ -75,7 +75,7 @@ endif()
 
 
 
-set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include;D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include;D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed;D:/mingw64/x86_64-w64-mingw32/include")
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include;D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed;D:/mingw64/x86_64-w64-mingw32/include")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "mingw32;gcc;moldname;mingwex;pthread;advapi32;shell32;user32;kernel32;iconv;mingw32;gcc;moldname;mingwex")
-set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0;D:/mingw64/lib/gcc;D:/code/SDL2-2.32.4/x86_64-w64-mingw32/lib;D:/mingw64/x86_64-w64-mingw32/lib;D:/mingw64/lib")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0;D:/mingw64/lib/gcc;D:/mingw64/x86_64-w64-mingw32/lib;D:/mingw64/lib")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

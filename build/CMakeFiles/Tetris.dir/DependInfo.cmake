@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/study/大一下/c++/Lab/Lab2/Classes.cpp" "CMakeFiles/Tetris.dir/Classes.cpp.obj" "gcc" "CMakeFiles/Tetris.dir/Classes.cpp.obj.d"
-  "D:/study/大一下/c++/Lab/Lab2/Main.cpp" "CMakeFiles/Tetris.dir/Main.cpp.obj" "gcc" "CMakeFiles/Tetris.dir/Main.cpp.obj.d"
-  "D:/study/大一下/c++/Lab/Lab2/Performance.cpp" "CMakeFiles/Tetris.dir/Performance.cpp.obj" "gcc" "CMakeFiles/Tetris.dir/Performance.cpp.obj.d"
+  "D:/study/大一下/c++/Lab/Tetris/Classes.cpp" "CMakeFiles/Tetris.dir/Classes.cpp.obj" "gcc" "CMakeFiles/Tetris.dir/Classes.cpp.obj.d"
+  "D:/study/大一下/c++/Lab/Tetris/Main.cpp" "CMakeFiles/Tetris.dir/Main.cpp.obj" "gcc" "CMakeFiles/Tetris.dir/Main.cpp.obj.d"
+  "D:/study/大一下/c++/Lab/Tetris/Performance.cpp" "CMakeFiles/Tetris.dir/Performance.cpp.obj" "gcc" "CMakeFiles/Tetris.dir/Performance.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -1,4 +1,4 @@
-# Install script for directory: D:/study/大一下/c++/Lab/Lab2
+# Install script for directory: D:/study/大一下/c++/Lab/Tetris
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,7 +40,7 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "D:/study/大一下/c++/Lab/Lab2/build/install_local_manifest.txt"
+  file(WRITE "D:/study/大一下/c++/Lab/Tetris/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -56,6 +56,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "D:/study/大一下/c++/Lab/Lab2/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "D:/study/大一下/c++/Lab/Tetris/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

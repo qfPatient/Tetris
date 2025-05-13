@@ -53,10 +53,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\study\大一下\c++\Lab\Lab2
+CMAKE_SOURCE_DIR = D:\study\大一下\c++\Lab\Tetris
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\study\大一下\c++\Lab\Lab2\build
+CMAKE_BINARY_DIR = D:\study\大一下\c++\Lab\Tetris\build
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -84,14 +84,14 @@ clean: CMakeFiles/Tetris.dir/clean
 CMakeFiles/Tetris.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tetris.dir\build.make CMakeFiles/Tetris.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Tetris.dir\build.make CMakeFiles/Tetris.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\study\大一下\c++\Lab\Lab2\build\CMakeFiles --progress-num=1,2,3,4 "Built target Tetris"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\study\大一下\c++\Lab\Tetris\build\CMakeFiles --progress-num=1,2,3,4 "Built target Tetris"
 .PHONY : CMakeFiles/Tetris.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Tetris.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\study\大一下\c++\Lab\Lab2\build\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\study\大一下\c++\Lab\Tetris\build\CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/Tetris.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\study\大一下\c++\Lab\Lab2\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\study\大一下\c++\Lab\Tetris\build\CMakeFiles 0
 .PHONY : CMakeFiles/Tetris.dir/rule
 
 # Convenience name for target.

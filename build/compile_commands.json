@@ -1,20 +1,20 @@
 [
 {
-  "directory": "D:/study/大一下/c++/Lab/Lab2/build",
-  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/Tetris.dir/includes_CXX.rsp -g -o CMakeFiles\\Tetris.dir\\Main.cpp.obj -c D:\\study\\大一下\\c++\\Lab\\Lab2\\Main.cpp",
-  "file": "D:/study/大一下/c++/Lab/Lab2/Main.cpp",
+  "directory": "D:/study/大一下/c++/Lab/Tetris/build",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/Tetris.dir/includes_CXX.rsp -g -o CMakeFiles\\Tetris.dir\\Main.cpp.obj -c D:\\study\\大一下\\c++\\Lab\\Tetris\\Main.cpp",
+  "file": "D:/study/大一下/c++/Lab/Tetris/Main.cpp",
   "output": "CMakeFiles/Tetris.dir/Main.cpp.obj"
 },
 {
-  "directory": "D:/study/大一下/c++/Lab/Lab2/build",
-  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/Tetris.dir/includes_CXX.rsp -g -o CMakeFiles\\Tetris.dir\\Classes.cpp.obj -c D:\\study\\大一下\\c++\\Lab\\Lab2\\Classes.cpp",
-  "file": "D:/study/大一下/c++/Lab/Lab2/Classes.cpp",
+  "directory": "D:/study/大一下/c++/Lab/Tetris/build",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/Tetris.dir/includes_CXX.rsp -g -o CMakeFiles\\Tetris.dir\\Classes.cpp.obj -c D:\\study\\大一下\\c++\\Lab\\Tetris\\Classes.cpp",
+  "file": "D:/study/大一下/c++/Lab/Tetris/Classes.cpp",
   "output": "CMakeFiles/Tetris.dir/Classes.cpp.obj"
 },
 {
-  "directory": "D:/study/大一下/c++/Lab/Lab2/build",
-  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/Tetris.dir/includes_CXX.rsp -g -o CMakeFiles\\Tetris.dir\\Performance.cpp.obj -c D:\\study\\大一下\\c++\\Lab\\Lab2\\Performance.cpp",
-  "file": "D:/study/大一下/c++/Lab/Lab2/Performance.cpp",
+  "directory": "D:/study/大一下/c++/Lab/Tetris/build",
+  "command": "D:\\mingw64\\bin\\g++.exe  @CMakeFiles/Tetris.dir/includes_CXX.rsp -g -o CMakeFiles\\Tetris.dir\\Performance.cpp.obj -c D:\\study\\大一下\\c++\\Lab\\Tetris\\Performance.cpp",
+  "file": "D:/study/大一下/c++/Lab/Tetris/Performance.cpp",
   "output": "CMakeFiles/Tetris.dir/Performance.cpp.obj"
 }
 ]

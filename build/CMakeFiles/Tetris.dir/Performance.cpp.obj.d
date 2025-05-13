@@ -1,14 +1,14 @@
 CMakeFiles/Tetris.dir/Performance.cpp.obj: \
- D:\study\大一下\c++\Lab\Lab2\Performance.cpp \
- D:\study\大一下\c++\Lab\Lab2\Performance.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_main.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_stdinc.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_config.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_platform.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/begin_code.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/close_code.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_config_windows.h \
+ D:\study\大一下\c++\Lab\Tetris\Performance.cpp \
+ D:\study\大一下\c++\Lab\Tetris\Performance.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_main.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_stdinc.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_config.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_platform.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/begin_code.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/close_code.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_config_windows.h \
  D:/mingw64/x86_64-w64-mingw32/include/winsdkver.h \
  D:/mingw64/x86_64-w64-mingw32/include/winapifamily.h \
  D:/mingw64/x86_64-w64-mingw32/include/sdkddkver.h \
@@ -26,20 +26,20 @@ CMakeFiles/Tetris.dir/Performance.cpp.obj: \
  D:/mingw64/x86_64-w64-mingw32/include/_mingw_stdarg.h \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/stdint.h \
  D:/mingw64/x86_64-w64-mingw32/include/stdint.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_assert.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_atomic.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_audio.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_error.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_endian.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_mutex.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_thread.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_assert.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_atomic.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_audio.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_error.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_endian.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_mutex.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_thread.h \
  D:/mingw64/x86_64-w64-mingw32/include/process.h \
  D:/mingw64/x86_64-w64-mingw32/include/corecrt_startup.h \
  D:/mingw64/x86_64-w64-mingw32/include/sys/types.h \
  D:/mingw64/x86_64-w64-mingw32/include/_mingw_off_t.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_rwops.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_clipboard.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_cpuinfo.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_rwops.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_clipboard.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_cpuinfo.h \
  D:/mingw64/x86_64-w64-mingw32/include/intrin.h \
  D:/mingw64/x86_64-w64-mingw32/include/setjmp.h \
  D:/mingw64/x86_64-w64-mingw32/include/psdk_inc/intrin-impl.h \
@@ -127,39 +127,39 @@ CMakeFiles/Tetris.dir/Performance.cpp.obj: \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/clzerointrin.h \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/wbnoinvdintrin.h \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/pkuintrin.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_events.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_video.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_pixels.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_rect.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_surface.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_blendmode.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_keyboard.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_keycode.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_scancode.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_mouse.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_joystick.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_guid.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_gamecontroller.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_sensor.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_quit.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_gesture.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_touch.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_filesystem.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_haptic.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_hidapi.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_hints.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_loadso.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_log.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_messagebox.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_metal.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_power.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_render.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_shape.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_system.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_timer.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_locale.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_misc.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_events.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_video.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_pixels.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_rect.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_surface.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_blendmode.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_keyboard.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_keycode.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_scancode.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_mouse.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_joystick.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_guid.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_gamecontroller.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_sensor.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_quit.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_gesture.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_touch.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_filesystem.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_haptic.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_hidapi.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_hints.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_loadso.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_log.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_messagebox.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_metal.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_power.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_render.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_shape.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_system.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_timer.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_locale.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_misc.h \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/random \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cmath \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/cpp_type_traits.h \
@@ -284,6 +284,36 @@ CMakeFiles/Tetris.dir/Performance.cpp.obj: \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_algo.h \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/algorithmfwd.h \
  D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/stl_heap.h \
- D:\study\大一下\c++\Lab\Lab2\Classes.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_ttf.h \
- D:/code/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL.h
+ D:\study\大一下\c++\Lab\Tetris\Classes.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/fstream \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/istream \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ios \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/ios_base.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/locale_classes.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/locale_classes.tcc \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/system_error \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/streambuf \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/streambuf.tcc \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/basic_ios.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/locale_facets.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/cwctype \
+ D:/mingw64/x86_64-w64-mingw32/include/wctype.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/streambuf_iterator.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/locale_facets.tcc \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/basic_ios.tcc \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ostream \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/ostream.tcc \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/istream.tcc \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/codecvt.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/fstream.tcc \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/iostream \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL_ttf.h \
+ D:/code/vscode/SDL2-2.32.4/x86_64-w64-mingw32/include/SDL2/SDL.h \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/chrono \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/ratio \
+ D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/bits/parse_numbers.h
