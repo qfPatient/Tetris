@@ -19,6 +19,9 @@ extern Tetromino *createTetrominoCopy(const Tetromino *original, int newX, int n
 extern void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vector<int> &fullRows);
 extern void graphInformation();
 extern vector<getInformation> optionInformation();
+extern void rotate(Tetromino &currentPiece);
+extern void operator++(Tetromino &currentPiece);
+extern void operator--(Tetromino &currentPiece);
 
 void Init();
 void draw();
@@ -36,3 +39,8 @@ void recordInformation();
 void graphInformation();
 void presentOldHighestScores();
 void presentCurrentScores();
+void rotate(Tetromino &currentPiece);
+void operator++(Tetromino &currentPiece);
+void operator--(Tetromino &currentPiece);
+std::ostream &operator<<(std::ostream &os, Tetromino *currentPiece);
+std::ostream &operator<<(std::ostream &os, const std::unique_ptr<Tetromino> &shape);

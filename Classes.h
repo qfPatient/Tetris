@@ -32,7 +32,7 @@ public:
     virtual void rotate();
     // 移动函数
     virtual void move(int x, int y);
-    // 拷贝构造函数
+    // 拷贝构造函数 子类中实现
 
 protected:
     Type type; // 类型
@@ -48,6 +48,9 @@ protected:
     friend void updateShapes(std::vector<std::unique_ptr<Tetromino>> &SHAPE, const std::vector<int> &fullRows);
     friend void graphInformation();
     friend vector<getInformation> optionInformation();
+    friend void rotate(Tetromino &currentPiece);
+    friend void operator++(Tetromino &currentPiece);
+    friend void operator--(Tetromino &currentPiece);
 };
 
 // 类的继承和子类构造函数实现
@@ -140,4 +143,13 @@ public:
     static int getNumsOfZ();
     ~Tetromino_Z();
     Tetromino_Z(const Tetromino_Z &other);
+};
+
+// 单独一个类 来判断是否存在满行
+class Judge
+{
+    public:
+        int grid[20][10];
+        Judge();
+        bool operator==(int other[20][10]);
 };

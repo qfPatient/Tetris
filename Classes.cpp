@@ -434,3 +434,39 @@ Tetromino_Z::Tetromino_Z(const Tetromino_Z &other)
     shape_array = other.shape_array;
     color = new SDL_Color(*other.color);
 }
+
+Judge::Judge()
+{
+    for (int i = 0; i < 20;i++)
+    {
+        for (int j = 0; j < 10;j++)
+        {
+            grid[i][j] = 1;
+        }
+    }
+}
+
+// 重载==来检测是否存在满行
+bool Judge::operator==(int other[20][10])
+{
+    bool is_euqal = 1;
+    bool is = 0;
+    for (int i = 0; i < 20;i++)
+    {
+        is_euqal = 1;
+        for (int j = 0; j < 10;j++)
+        {
+            if(!other[i][j])
+            {
+                is_euqal = 0;
+                break;
+            }
+        }
+        if(is_euqal==1)
+        {
+            is = 1;
+            break;
+        }
+    }
+    return is;
+}

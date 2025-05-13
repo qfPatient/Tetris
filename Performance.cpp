@@ -17,7 +17,7 @@ TTF_Font *font = nullptr;    // 字体初始化
 SDL_Surface *textSurface = nullptr;
 SDL_Texture *textTexture = nullptr;
 std::vector<std::unique_ptr<Tetromino>> SHAPE; // 图形储存
-static int scores = 0; // 得分统计
+int scores = 0; // 得分统计
 int grid[20][10] = {0}; // 游戏区域的网格（20行 x 10列）
 int difficulty = 1; // 难度选择
 vector<getInformation> old;
@@ -108,7 +108,7 @@ void event_loop()
 
     while (!gameover)
     {
-        if (old.size() != 1)
+        if (old.size() != 1) // 根据从option.txt读取的速度来单独修改下降速度
         {
             if (old[currentPiece->type].v != 0)
             {
@@ -146,57 +146,24 @@ void event_loop()
                     break;
                 case SDLK_LEFT: // 左移
                 {
-                    Tetromino temp = *currentPiece;
-                    temp.x -= 40;
-                    if (!checkCollision(&temp))
-                        currentPiece->x -= 40;
+                    --(*currentPiece);
                     break;
                 }
                 case SDLK_RIGHT: // 右移
                 {
-                    Tetromino temp = *currentPiece;
-                    temp.x += 40;
-                    if (!checkCollision(&temp))
-                        currentPiece->x += 40;
+                    ++(*currentPiece);
                     break;
                 }
                 case SDLK_UP: // 旋转
                 {
-                    // 旋转函数实现,生成临时对象检测是否会碰撞
-                    vector<vector<int>> originalShape = currentPiece->shape_array;
-                    int originalRotation = currentPiece->rotationState;
-                    int originalX = currentPiece->x;
-                    int originalY = currentPiece->y;
-                    currentPiece->rotate();
-
-                    if (checkCollision(currentPiece))
-                    {
-                        int dxAttempts[] = {-40, 40, -80, 80};
-                        bool found = false;
-                        for (int dx : dxAttempts)
-                        {
-                            currentPiece->x += dx;
-                            if (!checkCollision(currentPiece))
-                            {
-                                found = true;
-                                break;
-                            }
-                            currentPiece->x = originalX;
-                        }
-                        if (!found)
-                        {
-                            currentPiece->shape_array = originalShape;
-                            currentPiece->rotationState = originalRotation;
-                            currentPiece->x = originalX;
-                            currentPiece->y = originalY;
-                        }
-                    }
+                    rotate(*currentPiece);
                     break;
                 }
                 case SDLK_DOWN: // 快速下降
                     is_pressed_down = true;
                     break;
                 default:
+                    std::cout << "当前按键无效,请重新输入！" << std::endl;
                     break;
                 }
             default:
@@ -282,10 +249,10 @@ void event_loop()
             // 绘画出已到达底部图形
             for (const auto &shape : SHAPE)
             {
-                shape->draw(rdr);
+                std::cout << shape;
             }
             // 绘画出当前图像
-            currentPiece->draw(rdr);
+            std::cout << currentPiece;
 
             presentOldHighestScores(); // 屏幕打印历史最高分
             presentCurrentScores();    // 屏幕打印当前得分
@@ -376,23 +343,34 @@ bool checkCollision(Tetromino *currentPiece)
 vector<int>findFullRows(void)
 {
     vector<int> fullRows;
-    for(int i=0;i<20;i++)
+    Judge j;
+    if (j == grid) // 重载的==运算符用来判断是否存在满行
     {
-        bool is_full = true;
-        for(int j=0;j<10;j++)
+        for (int i = 0; i < 20; i++)
         {
-            if(!grid[i][j])
+            bool is_full = true;
+            for (int k = 0; k < 10; k++)
             {
-                is_full = false;
+                if (!grid[i][k])
+                {
+                    is_full = false;
+                }
+            }
+            if (is_full)
+            {
+                fullRows.push_back(i);
+                // 记分
+                scores += fullRows.size() * 10;
             }
         }
-        if(is_full)
-        {
-            fullRows.push_back(i);
-        }
-        // 分数统计
-        scores += fullRows.size()*10;
     }
+
+    if(scores>=9999999)
+    {
+        std::cout << "检测到作弊行为,程序自动结束!" << std::endl;
+        exit(0);
+    }
+
     return fullRows;
 }
 
@@ -483,7 +461,6 @@ vector<getInformation> optionInformation()
     vector<getInformation> old(7); // 创建对象，以便返回
     for (int j = 0; j < 7;j++)
     {
-        std::cout << 486 << " " << j << std::endl;
         old[j].ID = 0;
         int temp1 = 0;
         vector<std::string> str(3); // 三行
@@ -503,7 +480,6 @@ vector<getInformation> optionInformation()
         {
             old[j].ID = old[j].ID * 10 + (ID[i] - '0');
         }
-        std::cout << 509 << j << std::endl;
         std::string color[5]; // 颜色以及是否填充
         int num = 0;
         bool reading = false;
@@ -539,7 +515,6 @@ vector<getInformation> optionInformation()
         old[j].color.g = temp[2];
         old[j].color.r = temp[3];
         old[j].is_filled = temp[4];
-        std::cout << 545 << j << std::endl;
 
         std::string v; // 速度
         old[j].v = 0;
@@ -553,6 +528,19 @@ vector<getInformation> optionInformation()
         for (int i = 0; i < v.size(); i++)
         {
             old[j].v = old[j].v * 10 + (v[i] - '0');
+        }
+
+        if(old[j].v<=10)
+        {
+            std::cout << "编号为" << j << "的图形速度超过阈值!!!" << std::endl;
+            std::cout << "请重新输入编号" << j << "的更新间隔" << std::endl;
+            exit(0);
+        }
+        else if(old[j].v>=3000)
+        {
+            std::cout << "编号为" << j << "的图形速度太慢了!!!" << std::endl;
+            std::cout << "请重新输入编号" << j << "的更新间隔" << std::endl;
+            exit(0);
         }
     }
     ifs.close();
@@ -572,10 +560,20 @@ void recordInformation()
     }
 
     std::string str;
+    std::string old_time;
+    int i = 0;
     while (getline(ifs, str))
     {
+        if(i==0)
+        {
+            ifs.seekg(0);
+            getline(ifs, old_time);
+        }
+        i++;
         // 读取到第二行包含分数来进行比较
     }
+
+    ifs.close();
 
     int old_scores = 0; // 之前的最高分
     for (int i = 0; i < str.size(); i++)
@@ -585,7 +583,6 @@ void recordInformation()
             old_scores = old_scores * 10 + (str[i] - '0');
         }
     }
-    ifs.close();
 
     std::ofstream ofs;
     ofs.open("record.txt", std::ios::out);
@@ -609,7 +606,7 @@ void recordInformation()
     else
     {
         // 输出格式化的时间字符串
-        ofs << "最高分记录时间: " << time << std::endl;
+        ofs << old_time << std::endl;
         ofs << "最高分: " << old_scores;
     }
     ofs.close();
@@ -683,4 +680,71 @@ void presentCurrentScores()
             SDL_DestroyTexture(textTexture);
         }
     }
+}
+
+void rotate(Tetromino &currentPiece)
+{
+    // 旋转函数实现,生成临时对象检测是否会碰撞
+    vector<vector<int>> originalShape = currentPiece.shape_array;
+    int originalRotation = currentPiece.rotationState;
+    int originalX = currentPiece.x;
+    int originalY = currentPiece.y;
+    currentPiece.rotate();
+
+    if (checkCollision(&currentPiece))
+    {
+        int dxAttempts[] = {-40, 40, -80, 80};
+        bool found = false;
+        for (int dx : dxAttempts)
+        {
+            currentPiece.x += dx;
+            if (!checkCollision(&currentPiece))
+            {
+                found = true;
+                break;
+            }
+            currentPiece.x = originalX;
+        }
+        if (!found)
+        {
+            currentPiece.shape_array = originalShape;
+            currentPiece.rotationState = originalRotation;
+            currentPiece.x = originalX;
+            currentPiece.y = originalY;
+        }
+    }
+}
+
+// 右移重载++
+void operator++(Tetromino &currentPiece)
+{
+    Tetromino temp = currentPiece;
+    temp.x += 40;
+    if(!checkCollision(&temp))
+    {
+        currentPiece.x += 40;
+    }
+}
+
+// 左移重载--
+void operator--(Tetromino &currentPiece)
+{
+    Tetromino temp = currentPiece;
+    temp.x -= 40;
+    if (!checkCollision(&temp))
+    {
+        currentPiece.x -= 40;
+    }
+}
+
+std::ostream &operator<<(std::ostream &os, Tetromino *currentPiece)
+{
+    currentPiece->draw(rdr);
+    return os;
+}
+
+std::ostream &operator<<(std::ostream &os, const std::unique_ptr<Tetromino> &shape)
+{
+    shape->draw(rdr);
+    return os;
 }
