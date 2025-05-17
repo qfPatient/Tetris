@@ -129,7 +129,7 @@ void event_loop()
                 is_pressed = true;
                 switch (event.key.keysym.sym) // 按键检测
                 {
-                case SDLK_KP_1: // 三种难度选择
+                case SDLK_KP_1: // 三种难度选择 (主键盘数字键和小键盘数字键)
                     difficulty = 1;
                     break;
                 case SDLK_KP_2 : 
@@ -137,6 +137,15 @@ void event_loop()
                     break;
                 case SDLK_KP_3:
                     difficulty = 3;
+                    break;
+                case SDLK_1:
+                    difficulty = 1;
+                    break;
+                case SDLK_2:
+                    difficulty = 1;
+                    break;
+                case SDLK_3:
+                    difficulty = 1;
                     break;
                 case SDLK_ESCAPE: // 退出
                     gameover = true;
